@@ -14,10 +14,16 @@ enum MovieCategory: String, CaseIterable {
     case popular
 }
 
+enum TvShowCategory: String, CaseIterable {
+    case popular
+    case on_the_air
+    case top_rated
+}
+
 enum SelectedCategory: String {
     case search = "search/movie/"
     case movie = "movie/"
-    case trendingTV = "trending/tv/week"
+    case trendingTV = "tv/"
 }
 
 class MovieService {
@@ -61,8 +67,8 @@ class MovieService {
         task?.resume()
     }
     
-    func getTvShows(selection: SelectedCategory, callback: @escaping (Bool, [Movie]?) -> Void) {
-        guard let url = URL(string: baseUrl + selection.rawValue +  lang + key) else { return }
+    func getTvShows(category: TvShowCategory, selection: SelectedCategory, callback: @escaping (Bool, [TV]?) -> Void) {
+        guard let url = URL(string: baseUrl + selection.rawValue + category.rawValue +  lang + key) else { return }
         print(url)
         var task: URLSessionDataTask?
         task?.cancel()
@@ -76,7 +82,7 @@ class MovieService {
                     callback(false, nil)
                     return
                 }
-                guard let responseJSON = try? JSONDecoder().decode(MovieResult.self, from: data),
+                guard let responseJSON = try? JSONDecoder().decode(TvResult.self, from: data),
                       let translatedMovie = responseJSON.results else {
                     callback(false, nil)
                     return
@@ -113,4 +119,53 @@ class MovieService {
         }
         task?.resume()
     }
+    
+    func getDataRequest(url:String, onCompletion:@escaping (Any)->()){
+        let path = "https://api.themoviedb.org/3\(url)"
+        if let url = URL(string: path) {
+            print(url)
+            URLSession.shared.dataTask(with: url) {
+                (data, response,error) in
+                
+                guard let data = data, error == nil, response != nil else{
+                    print("Something is wrong: \(String(describing: error?.localizedDescription))")
+                    return
+                }
+                onCompletion(data)
+                }.resume()
+        }
+        else {
+            print("Unable to create URL")
+        }
+    }
+    
+    func movieVideos(movieID:Int, completion: @escaping (VideoInfo)->()) {
+        let getURL = "/movie/\(movieID)/videos?api_key=e6cb2189d29775d655516bccea379b4b&language=en-US"
+        getDataRequest(url: getURL) { jsonData in
+            do
+            {
+                let results = try JSONDecoder().decode(VideoInfo.self, from: jsonData as! Data)
+                completion(results)
+            }
+            catch
+            {
+                print("JSON Downloading Error!")
+            }
+        }
+    }
+    
+    func youtubeThumb(path:String)->URL?{
+       if let url = URL(string: "https://img.youtube.com/vi/" + path + "/0.jpg"){
+           return url
+       }
+       return nil
+   }
+   
+    func youtubeURL(path:String)->URL?{
+       if let url = URL(string: "https://www.youtube.com/watch?v=" + path){
+           return url
+       }
+       return nil
+   }
+    
 }

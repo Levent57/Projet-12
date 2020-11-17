@@ -7,39 +7,47 @@
 
 import UIKit
 
-class TvShowsCell: UICollectionViewCell {
+class TvShowsCell: UITableViewCell{
+
+    @IBOutlet weak var tvCollectionViewCell: UICollectionView!
     
-    @IBOutlet weak var tvShowsPosterImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    
-    var gradient: CAGradientLayer!
-//    var movies: [Movie] = []
+    var movies: [TV] = []
     var controller: TvViewController!
     
-    
-    override func awakeFromNib() {
-        imageGradient()
+    func setup(_ movies: [TV], _ controller: TvViewController) {
+        self.controller = controller
+        self.tvCollectionViewCell.delegate = self
+        self.tvCollectionViewCell.dataSource = self
+        self.movies = movies
+        self.tvCollectionViewCell.reloadData()
+        self.tvCollectionViewCell.collectionViewLayout = setNeedsLayout()
     }
     
-    var movie: Movie!
-
-    func setup(_ movie: Movie) {
-        self.movie = movie
-        contentView.layer.cornerRadius = 10
-        tvShowsPosterImageView.load(185, self.movie.posterPath ?? "")
-        titleLabel.text = self.movie.title
+    func setNeedsLayout() -> UICollectionViewFlowLayout {
+        let l = UICollectionViewFlowLayout()
+        l.itemSize = CGSize(width: 185, height: 250)
+        l.minimumLineSpacing = 30
+        l.scrollDirection = .horizontal
+        return l
     }
-//    func setup(_ movies: [Movie], _ controller: TvViewController) {
-//        self.controller = controller
-//        contentView.layer.cornerRadius = 10
-//        self.movies = movies
-//    }
+    
+}
 
-    func imageGradient() {
-        gradient = CAGradientLayer()
-        gradient.frame = tvShowsPosterImageView.bounds
-        gradient.colors = [UIColor.white.cgColor, UIColor.white.cgColor, UIColor.white.cgColor, UIColor.clear.cgColor]
-        gradient.locations = [0, 0.6, 0.8, 1]
-        tvShowsPosterImageView.layer.mask = gradient
+extension TvShowsCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movies.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TVCell", for: indexPath) as! TVShowsCollectionCell
+        cell.setup(movies[indexPath.item])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movie = movies[indexPath.item]
+        controller.performSegue(withIdentifier: "TvDetail", sender: movie)
+    }
+    
 }

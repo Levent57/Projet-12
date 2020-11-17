@@ -19,8 +19,6 @@ class MovieCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 10
         titleLable.text = self.movie.title
         posterImageView.load(185, self.movie.posterPath ?? "")
-//        posterImageView.load(185, self.movie.backdrop_path)
-// still_path
     }
     
 }

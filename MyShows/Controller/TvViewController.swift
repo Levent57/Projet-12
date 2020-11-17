@@ -9,61 +9,61 @@ import UIKit
 
 class TvViewController: UIViewController {
     
-    var movieService = MovieService()
-    var shows: [Movie] = []
-//    var movieByCategory: [MoviesByCategory] = []
-
-    @IBOutlet weak var tvCollectionView: UICollectionView!
+    var tvByCategory: [TvShowsByCategory] = []
+    
+    @IBOutlet weak var tvShowsTableView: UITableView!
+    
     
     override func viewDidLoad() {
-        tvCollectionView.delegate = self
-        tvCollectionView.dataSource = self
-        loadLatestTvData()
         super.viewDidLoad()
-    }
-    
-    func loadLatestTvData() {
-        movieService.getTvShows(selection: .trendingTV) { (success, tvShows) in
-            guard let fetchedTv = tvShows else { return }
-            self.shows = fetchedTv
-            DispatchQueue.main.async {
-                self.tvCollectionView.reloadData()
+        tvShowsTableView.delegate = self
+        tvShowsTableView.dataSource = self
+        TvShowCategory.allCases.forEach { (tscat) in
+            let new = TvShowsByCategory(tvCat: tscat)
+            self.tvByCategory.append(new)
+        }
+        tvByCategory.forEach { (tsbc) in
+            MovieService().getTvShows(category: tsbc.tvCat, selection: .trendingTV) { (success, results) in
+                tsbc.tvShows = results!
+                print(tsbc.tvShows.count)
+                self.tvShowsTableView.reloadData()
             }
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TvDetail", let detail = segue.destination as? DetailController {
-            detail.movie = sender as? Movie
+        if segue.identifier == "TvDetail", let detail = segue.destination as? TvDetailController {
+            detail.tv = sender as? TV
         }
-     }
-    
+    }
 }
 
-extension TvViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension TvViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return tvByCategory.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return shows.count
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let tvShows = tvByCategory[indexPath.section].tvShows
+        if let cell = tvShowsTableView.dequeueReusableCell(withIdentifier: "TVShowCell") as? TvShowsCell {
+            cell.setup(tvShows, self)
+            return cell
+        }
+        return UITableViewCell()
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "popularTv", for: indexPath) as! TvShowsCell
-        cell.setup(shows[indexPath.item])
-        return cell
-//        let show = shows[indexPath.section]
-//        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "popularTv", for: indexPath) as? TvShowsCell {
-//            cell.setup(shows, self)
-//        return cell
-//        }
-//        return UICollectionViewCell()
-//        let onAirCell = collectionView.dequeueReusableCell(withReuseIdentifier: "popularTv", for: indexPath) as! TvShowsCell
-//        let tv = shows[indexPath.row]
-//        onAirCell.movie = tv
-//        onAirCell.tvShowsPosterImageView.load(185, tv.posterPath ?? "")
-//        return onAirCell
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 275
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return tvByCategory[section].name
+    }
+    
+    
 }

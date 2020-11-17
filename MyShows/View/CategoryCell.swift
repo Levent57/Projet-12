@@ -46,8 +46,29 @@ extension CategoryCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let movie = movies[indexPath.item]
-        controller.performSegue(withIdentifier: "Detail", sender: movie)
+//        let movie = movies[indexPath.item]
+//        controller.performSegue(withIdentifier: "Detail", sender: movie)
+        if let mainViewController = parentViewController as? ViewController {
+//            guard movies.count > indexPath.row else { return }
+            let movie = movies[indexPath.row]
+            guard let detailVC = mainViewController.storyboard?.instantiateViewController(withIdentifier: "movieDetail") as? DetailController else { return }
+            detailVC.movie = movie
+            detailVC.movieID = movie.id
+            mainViewController.show(detailVC, sender: self)
+        }
     }
-    
+}
+//}
+
+extension UIView {
+    var parentViewController: UIViewController? {
+        var parentResponder: UIResponder? = self
+        while parentResponder != nil {
+            parentResponder = parentResponder!.next
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+        }
+        return nil
+    }
 }

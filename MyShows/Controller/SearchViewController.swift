@@ -70,6 +70,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let movie = movies[indexPath.row]
         guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "movieDetail") as? DetailController else { return }
         detailVC.movie = movie
+        detailVC.movieID = movie.id
         self.showDetailViewController(detailVC, sender: self)
     }
 
