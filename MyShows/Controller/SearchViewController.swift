@@ -38,11 +38,13 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let searchTerm = searchBar.text ?? ""
-        service.searchMovie(selection: .search, query: [searchTerm]) { (success, movie) in
+        let encodeSearch = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        service.searchMovie(selection: .search, query: [encodeSearch]) { (success, movie) in
             guard let fetchedMovies = movie else { return }
             self.movies = fetchedMovies
             DispatchQueue.main.async {
                 self.searchTableView.reloadData()
+                self.searchBar.endEditing(true)
                 searchBar.text = nil
             }
         }
@@ -77,6 +79,15 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125
     }
+    
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let label = UILabel()
+//        label.text = "Recherchez vos films ici"
+//        label.font = UIFont.systemFont(ofSize: 20)
+//        label.textAlignment = .center
+//        label.textColor = .black
+//        return label
+//    }
 
 
 }

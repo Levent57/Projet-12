@@ -154,6 +154,22 @@ class MovieService {
         }
     }
     
+    func tvVideos(tvID:Int, completion: @escaping (VideoInfo)->()) {
+        
+        let getURL = "/tv/\(tvID)/videos?api_key=e6cb2189d29775d655516bccea379b4b&language=en-US"
+        getDataRequest(url: getURL) { jsonData in
+            do
+            {
+                let results = try JSONDecoder().decode(VideoInfo.self, from: jsonData as! Data)
+                completion(results)
+            }
+            catch
+            {
+                print("JSON Downloading Error!")
+            }
+        }
+    }
+    
     func youtubeThumb(path:String)->URL?{
        if let url = URL(string: "https://img.youtube.com/vi/" + path + "/0.jpg"){
            return url

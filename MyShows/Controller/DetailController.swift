@@ -14,8 +14,9 @@ class DetailController: UIViewController {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var overviewTextView: UITextView!
-    @IBOutlet weak var detailBackgroundView: UIView!
+//    @IBOutlet weak var detailBackgroundView: UIView!
     @IBOutlet weak var trailersCollection: UICollectionView!
     @IBOutlet weak var circularRateView: CircularRateView!
     
@@ -30,7 +31,7 @@ class DetailController: UIViewController {
         super.viewDidLoad()
         self.perform(#selector(animateProgress), with: nil, afterDelay: 0.5)
         setupLabel()
-        detailBackgroundView.layer.cornerRadius = 15
+//        detailBackgroundView.layer.cornerRadius = 15
         trailersCollection.dataSource = self
         service.movieVideos(movieID: (movieID)!) { (videos: VideoInfo) in
             if let allVideos = videos.results{
@@ -47,12 +48,13 @@ class DetailController: UIViewController {
     
     func setupLabel() {
         guard let m = movie else { return }
-        navigationItem.title = m.title
+//        navigationItem.title = m.title
         originalTitleLabel.text = m.originalTitle
-        releaseDateLabel.text = "Date de sortie: \(m.releaseDate)"
-        ratingLabel.text = "Note: \(m.voteAverage)"
+        releaseDateLabel.text = m.releaseDate
+        ratingLabel.text = String(m.voteAverage)
         overviewTextView.text = m.overview
         posterImageView.load(185, m.posterPath ?? "")
+        backgroundImageView.load(1280, m.backdropPath ?? "")
     }
 
     @objc func animateProgress() {
@@ -130,6 +132,9 @@ class DetailController: UIViewController {
 }
 
 extension DetailController: UICollectionViewDataSource {
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.trailersCollection{
             if let number = self.videoList?.count {

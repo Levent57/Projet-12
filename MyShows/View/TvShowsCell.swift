@@ -11,14 +11,14 @@ class TvShowsCell: UITableViewCell{
 
     @IBOutlet weak var tvCollectionViewCell: UICollectionView!
     
-    var movies: [TV] = []
+    var shows: [TV] = []
     var controller: TvViewController!
     
-    func setup(_ movies: [TV], _ controller: TvViewController) {
+    func setup(_ shows: [TV], _ controller: TvViewController) {
         self.controller = controller
         self.tvCollectionViewCell.delegate = self
         self.tvCollectionViewCell.dataSource = self
-        self.movies = movies
+        self.shows = shows
         self.tvCollectionViewCell.reloadData()
         self.tvCollectionViewCell.collectionViewLayout = setNeedsLayout()
     }
@@ -36,18 +36,23 @@ class TvShowsCell: UITableViewCell{
 extension TvShowsCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        return shows.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TVCell", for: indexPath) as! TVShowsCollectionCell
-        cell.setup(movies[indexPath.item])
+        cell.setup(shows[indexPath.item])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let movie = movies[indexPath.item]
-        controller.performSegue(withIdentifier: "TvDetail", sender: movie)
+        if let mainViewController = parentViewController as? TvViewController {  
+            let tv = shows[indexPath.row]
+            guard let detailVC = mainViewController.storyboard?.instantiateViewController(withIdentifier: "tvDetail") as? TvDetailController else { return }
+            detailVC.tv = tv
+            detailVC.tvID = tv.id
+            mainViewController.show(detailVC, sender: self)
+        }
     }
     
 }

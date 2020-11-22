@@ -7,22 +7,44 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
 class TvDetailController: UIViewController {
     
     @IBOutlet weak var backGroundImageView: UIImageView!
+    @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var overviewTextView: UITextView!
     @IBOutlet weak var circularProgressView: CircularRateView!
     @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var trailerCollection: UICollectionView!
+    
     
     var tv: TV!
     var tvShow: [TV]?
+    
+    var service = MovieService()
+    var tvID: Int?
+    var videoList:[Videos]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.perform(#selector(animateProgress), with: nil, afterDelay: 0.5)
         setupLabel()
+        trailerCollection.dataSource = self
+        trailerCollection.delegate = self
+        service.tvVideos(tvID: (tvID)!) { (videos: VideoInfo) in
+            if let allVideos = videos.results{
+                self.videoList = allVideos
+                DispatchQueue.main.async {
+                    if self.videoList?.count == 0 {
+
+                    }
+                    self.trailerCollection.reloadData()
+                }
+            }
+        }
     }
     
     func setupLabel() {
@@ -31,6 +53,8 @@ class TvDetailController: UIViewController {
         titleLabel.text = t.original_name
         overviewTextView.text = t.overview
         ratingLabel.text = String(t.vote_average)
+        releaseDateLabel.text = t.first_air_date
+        posterImageView.load(185, t.poster_path ?? "")
         backGroundImageView.load(1280, t.backdrop_path ?? "")
     }
     
@@ -86,4 +110,61 @@ class TvDetailController: UIViewController {
         }
     }
     
+    // Opens trailer in Youtube when tapped
+    @objc func tapVideo(_ sender: UITapGestureRecognizer){
+        let location = sender.location(in: self.trailerCollection)
+        let indexPath = self.trailerCollection.indexPathForItem(at: location)
+        if let index = indexPath {
+            let video_one = self.videoList![index[1]]
+            if let video_key = video_one.key{
+                let videoURL = service.youtubeURL(path: video_key)
+                if let videourl = videoURL{
+                    print(videourl)
+                    
+                    let safariVC = SFSafariViewController(url: videourl)
+                    present(safariVC, animated: true, completion: nil)
+                }
+            }
+        }
+    }
 }
+
+extension TvDetailController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == self.trailerCollection{
+            if let number = self.videoList?.count {
+                return number
+            }
+            else{
+                return 0
+            }
+        }
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let trailerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tvTrailerCell", for: indexPath) as! TrailerCell
+        if collectionView == self.trailerCollection {
+            let video_one = self.videoList![indexPath.row]
+            if let video_key = video_one.key {
+                let videoThumbURL = service.youtubeThumb(path: video_key)
+                
+                let url = videoThumbURL
+                
+                if let data = try? Data(contentsOf: url!)  {
+                    trailerCell.backgroundImageView.image = UIImage(data: data)
+                }  else {
+                    print("There is no video data available")
+                }
+            } else {
+                print("Unable to get youtube video")
+            }
+            trailerCell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapVideo(_:))))
+        }
+        
+        return trailerCell
+    }
+}
+
