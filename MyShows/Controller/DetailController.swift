@@ -16,7 +16,6 @@ class DetailController: UIViewController {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var overviewTextView: UITextView!
-//    @IBOutlet weak var detailBackgroundView: UIView!
     @IBOutlet weak var trailersCollection: UICollectionView!
     @IBOutlet weak var circularRateView: CircularRateView!
     
@@ -31,7 +30,6 @@ class DetailController: UIViewController {
         super.viewDidLoad()
         self.perform(#selector(animateProgress), with: nil, afterDelay: 0.5)
         setupLabel()
-//        detailBackgroundView.layer.cornerRadius = 15
         trailersCollection.dataSource = self
         service.movieVideos(movieID: (movieID)!) { (videos: VideoInfo) in
             if let allVideos = videos.results{
@@ -48,7 +46,6 @@ class DetailController: UIViewController {
     
     func setupLabel() {
         guard let m = movie else { return }
-//        navigationItem.title = m.title
         originalTitleLabel.text = m.originalTitle
         releaseDateLabel.text = m.releaseDate
         ratingLabel.text = String(m.voteAverage)
@@ -164,4 +161,10 @@ extension DetailController: UICollectionViewDataSource {
         }
         return trailerCell
    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                                   layout collectionViewLayout: UICollectionViewLayout,
+                                   minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+            return 10
+        }
 }

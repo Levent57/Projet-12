@@ -18,15 +18,20 @@ class TvViewController: UIViewController {
         super.viewDidLoad()
         tvShowsTableView.delegate = self
         tvShowsTableView.dataSource = self
+//        self.tvShowsTableView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         TvShowCategory.allCases.forEach { (tscat) in
             let new = TvShowsByCategory(tvCat: tscat)
             self.tvByCategory.append(new)
         }
         tvByCategory.forEach { (tsbc) in
             MovieService().getTvShows(category: tsbc.tvCat, selection: .trendingTV) { (success, results) in
-                tsbc.tvShows = results!
-                print(tsbc.tvShows.count)
-                self.tvShowsTableView.reloadData()
+                if success {
+                    tsbc.tvShows = results!
+                    print(tsbc.tvShows.count)
+                    self.tvShowsTableView.reloadData()
+                } else {
+                    self.showErrorPopup(title: "Erreur", message: "Erreur")
+                }
             }
         }
     }
@@ -65,5 +70,10 @@ extension TvViewController: UITableViewDelegate, UITableViewDataSource {
         return tvByCategory[section].name
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = UIFont(name: "Futura", size: 20)!
+        header.textLabel?.textColor = UIColor.black
+    }
     
 }

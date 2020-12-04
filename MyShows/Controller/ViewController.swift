@@ -10,25 +10,22 @@ import UIKit
 class ViewController: UIViewController {
     
     var moviesByCategory: [MoviesByCategory] = []
+    var alertController: UIAlertController?
     
     @IBOutlet weak var tableView: UITableView!
-    
-  
+
     override func viewDidLoad() {
         super.viewDidLoad()
+//        if NetworkCheck.isConnectedToNetwork() {
+//            print("Connecté à internet")
+//            downoladMovies()
+//        } else {
+//            print("Pas de connexion")
+//            showErrorPopup(title: "Errur", message: "Erreur")
+//        }
         tableView.delegate = self
         tableView.dataSource = self
-        MovieCategory.allCases.forEach { (cat) in
-            let new = MoviesByCategory(cat: cat)
-            self.moviesByCategory.append(new)
-        }
-        moviesByCategory.forEach { (mbc) in
-            MovieService().getMovie(category: mbc.cat, selection: .movie) { (success, results) in
-                mbc.movies = results!
-                print(mbc.movies.count)
-                self.tableView.reloadData()
-            }
-        }
+        downoladMovies()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,10 +33,29 @@ class ViewController: UIViewController {
             detail.movie = sender as? Movie
         }
     }
+    
+    func downoladMovies() {
+        MovieCategory.allCases.forEach { (cat) in
+            let new = MoviesByCategory(cat: cat)
+            self.moviesByCategory.append(new)
+        }
+        moviesByCategory.forEach { (mbc) in
+            MovieService().getMovie(category: mbc.cat, selection: .movie) { (success, results) in
+                if success {
+                mbc.movies = results!
+                print(mbc.movies.count)
+                self.tableView.reloadData()
+                } else {
+                    self.showErrorPopup(title: "Erreur", message: "Erreur")
+                }
+            }
+        }
+    }
 }
 
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return moviesByCategory.count
     }
@@ -64,6 +80,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return moviesByCategory[section].name
     }
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = UIFont(name: "Futura", size: 20)!
+        header.textLabel?.textColor = UIColor.black
+    }
 }
 
 extension UIViewController {
@@ -73,4 +95,5 @@ extension UIViewController {
         present(alertController, animated: true)
     }
 }
+
 

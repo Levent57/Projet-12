@@ -124,7 +124,8 @@ class MovieService {
         let path = "https://api.themoviedb.org/3\(url)"
         if let url = URL(string: path) {
             print(url)
-            URLSession.shared.dataTask(with: url) {
+//            URLSession.shared.dataTask(with: url) {
+                movieSession.dataTask(with: url) {
                 (data, response,error) in
                 
                 guard let data = data, error == nil, response != nil else{

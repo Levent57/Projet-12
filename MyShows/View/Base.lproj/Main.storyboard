@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TRc-fI-ADz">
+                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TRc-fI-ADz">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -30,10 +30,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BXV-7y-tMD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                                    <rect key="frame" x="10" y="0.0" width="404" height="250"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="01S-5b-qf5">
-                                                        <size key="itemSize" width="189" height="233"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ulX-4b-pFF">
+                                                        <size key="itemSize" width="128" height="128"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -106,7 +106,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="BXV-7y-tMD" secondAttribute="trailing" id="4fh-jS-Ie9"/>
                                                 <constraint firstAttribute="bottom" secondItem="BXV-7y-tMD" secondAttribute="bottom" id="beA-yz-MzU"/>
-                                                <constraint firstItem="BXV-7y-tMD" firstAttribute="leading" secondItem="gWv-0k-2a7" secondAttribute="leading" id="tjr-s8-5Kn"/>
+                                                <constraint firstItem="BXV-7y-tMD" firstAttribute="leading" secondItem="gWv-0k-2a7" secondAttribute="leading" constant="10" id="tjr-s8-5Kn"/>
                                                 <constraint firstItem="BXV-7y-tMD" firstAttribute="top" secondItem="gWv-0k-2a7" secondAttribute="top" id="uRZ-sD-Xhu"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -332,7 +332,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="hA1-X7-Xls"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -398,7 +398,7 @@
             </objects>
             <point key="canvasLocation" x="1908.6956521739132" y="81.696428571428569"/>
         </scene>
-        <!--TV-->
+        <!--Series-->
         <scene sceneID="12y-JO-qZT">
             <objects>
                 <viewController id="rZA-fa-12i" customClass="TvViewController" customModule="MyShows" customModuleProvider="target" sceneMemberID="viewController">
@@ -418,9 +418,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0j4-hd-fba">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                                    <rect key="frame" x="10" y="0.0" width="404" height="250"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cPO-4m-NlL">
+                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="cPO-4m-NlL">
                                                         <size key="itemSize" width="189" height="233"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -494,7 +494,7 @@
                                             <constraints>
                                                 <constraint firstItem="0j4-hd-fba" firstAttribute="top" secondItem="kTr-Kq-52d" secondAttribute="top" id="Ca9-BJ-HIM"/>
                                                 <constraint firstAttribute="bottom" secondItem="0j4-hd-fba" secondAttribute="bottom" id="bYn-qj-RWw"/>
-                                                <constraint firstItem="0j4-hd-fba" firstAttribute="leading" secondItem="kTr-Kq-52d" secondAttribute="leading" id="upN-Bv-KX7"/>
+                                                <constraint firstItem="0j4-hd-fba" firstAttribute="leading" secondItem="kTr-Kq-52d" secondAttribute="leading" constant="10" id="upN-Bv-KX7"/>
                                                 <constraint firstAttribute="trailing" secondItem="0j4-hd-fba" secondAttribute="trailing" id="yGr-g4-KLl"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -514,7 +514,7 @@
                             <constraint firstItem="GYi-6g-hs0" firstAttribute="top" secondItem="QCi-Ru-P8I" secondAttribute="top" id="u1t-34-KeE"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="TV" image="iconmonstr-television-8" id="R0X-WR-bjj"/>
+                    <tabBarItem key="tabBarItem" title="Series" image="iconmonstr-television-8" id="R0X-WR-bjj"/>
                     <connections>
                         <outlet property="tvShowsTableView" destination="GYi-6g-hs0" id="oR8-rD-8qH"/>
                         <segue destination="dQ7-tG-Jdu" kind="show" identifier="TvDetail" id="nbM-Zs-c9E"/>
@@ -690,7 +690,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0rT-iw-COK"/>
+        <segue reference="7bZ-dT-Iw0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="iconmonstr-magnifier-3" width="24" height="24"/>

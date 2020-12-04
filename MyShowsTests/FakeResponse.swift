@@ -17,29 +17,10 @@ class FakeResponseData {
     
     static var currencyCorrectData: Data {
         let bundle = Bundle(for: FakeResponseData.self)
-        let url = bundle.url(forResource: "Currency", withExtension: "json")!
+        let url = bundle.url(forResource: "Movie", withExtension: "json")!
         let data = try! Data(contentsOf: url)
         return data
     }
     
-    static var weatherCorrectData: Data {
-        let bundle = Bundle(for: FakeResponseData.self)
-        let url = bundle.url(forResource: "Weather", withExtension: "json")!
-        let data = try! Data(contentsOf: url)
-        return data
-    }
-    
-    static var translationCorrectData: Data {
-        let bundle = Bundle(for: FakeResponseData.self)
-        let url = bundle.url(forResource: "Translation", withExtension: "json")!
-        let data = try! Data(contentsOf: url)
-        return data
-    }
-    
-    static let IncorrectData = "erreur".data(using: .utf8)
-    
-    
-    class CurrencyError: Error{}
-    static let error = CurrencyError()
-    
+    static let incorrectData = "error".data(using: .utf8)
 }

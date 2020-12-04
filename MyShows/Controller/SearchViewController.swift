@@ -9,7 +9,7 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    @IBOutlet weak var searchTableView: UITableView!
+    @IBOutlet weak var searchTableView: UITableView! { didSet{searchTableView.tableFooterView = UIView() } }
     @IBOutlet weak var searchBar: UISearchBar!
     
     var service = MovieService()
@@ -39,6 +39,9 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let searchTerm = searchBar.text ?? ""
         let encodeSearch = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        if searchBar.text!.isEmpty {
+            showErrorPopup(title: "Aucun text", message: "Veuillez taper le nom d'un film à rechercher")
+        }
         service.searchMovie(selection: .search, query: [encodeSearch]) { (success, movie) in
             guard let fetchedMovies = movie else { return }
             self.movies = fetchedMovies
@@ -53,10 +56,8 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
-
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,14 +81,16 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return 125
     }
     
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let label = UILabel()
-//        label.text = "Recherchez vos films ici"
-//        label.font = UIFont.systemFont(ofSize: 20)
-//        label.textAlignment = .center
-//        label.textColor = .black
-//        return label
-//    }
-
-
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Recherchez vos films ici"
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textAlignment = .center
+        label.textColor = .black
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return movies.isEmpty ? 150 : 0
+    }
 }

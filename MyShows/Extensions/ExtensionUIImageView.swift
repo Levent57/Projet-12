@@ -23,7 +23,6 @@ extension UIImageView {
     }
 }
 
-
 extension UIView {
     var parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self

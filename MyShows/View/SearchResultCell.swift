@@ -30,7 +30,7 @@ class SearchResultCell: UITableViewCell {
         guard let movie = movie else { return }
         DispatchQueue.main.async {
             self.MovieTitleLabel.text = movie.title
-            self.releaseDataLabel.text = movie.releaseDate
+            self.releaseDataLabel.text = "Date de sortie: \(movie.releaseDate)"
             self.posterImageView.load(185, movie.posterPath ?? "")
         }
     }

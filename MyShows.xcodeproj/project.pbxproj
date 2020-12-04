@@ -39,6 +39,9 @@
 		2BC9B2862569A7BE00AD6084 /* MyShowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC9B2852569A7BE00AD6084 /* MyShowsTests.swift */; };
 		2BC9B2962569A84000AD6084 /* FakeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC9B2952569A84000AD6084 /* FakeResponse.swift */; };
 		2BE0FD7F255B474B0078DBA2 /* CircularRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE0FD7E255B474B0078DBA2 /* CircularRateView.swift */; };
+		2BED393F2575965A004A6E35 /* Movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BED393E2575965A004A6E35 /* Movie.json */; };
+		2BED39432575977F004A6E35 /* MokeMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BED39422575977F004A6E35 /* MokeMovie.swift */; };
+		2BED39782578F2D9004A6E35 /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BED39772578F2D9004A6E35 /* NetworkCheck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +91,9 @@
 		2BC9B2872569A7BE00AD6084 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BC9B2952569A84000AD6084 /* FakeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponse.swift; sourceTree = "<group>"; };
 		2BE0FD7E255B474B0078DBA2 /* CircularRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularRateView.swift; sourceTree = "<group>"; };
+		2BED393E2575965A004A6E35 /* Movie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Movie.json; sourceTree = "<group>"; };
+		2BED39422575977F004A6E35 /* MokeMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokeMovie.swift; sourceTree = "<group>"; };
+		2BED39772578F2D9004A6E35 /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +206,7 @@
 			children = (
 				2BB54BA825473BB100803BFD /* ExtensionUIImageView.swift */,
 				2BC9B27B25699F0800AD6084 /* ErrorAlert.swift */,
+				2BED39772578F2D9004A6E35 /* NetworkCheck.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -207,8 +214,10 @@
 		2BC9B2842569A7BE00AD6084 /* MyShowsTests */ = {
 			isa = PBXGroup;
 			children = (
-				2BC9B2852569A7BE00AD6084 /* MyShowsTests.swift */,
 				2BC9B2952569A84000AD6084 /* FakeResponse.swift */,
+				2BED39422575977F004A6E35 /* MokeMovie.swift */,
+				2BC9B2852569A7BE00AD6084 /* MyShowsTests.swift */,
+				2BED393E2575965A004A6E35 /* Movie.json */,
 				2BC9B2872569A7BE00AD6084 /* Info.plist */,
 			);
 			path = MyShowsTests;
@@ -304,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BED393F2575965A004A6E35 /* Movie.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BA73187253F532E00E58619 /* ViewController.swift in Sources */,
+				2BED39782578F2D9004A6E35 /* NetworkCheck.swift in Sources */,
 				2B55CFAD255AF411006C64DE /* TvShowsCell.swift in Sources */,
 				2B99C17825630DD000C62022 /* TvDetailController.swift in Sources */,
 				2BB54BBF254B0DF200803BFD /* SearchViewController.swift in Sources */,
@@ -350,6 +361,7 @@
 			files = (
 				2BC9B2862569A7BE00AD6084 /* MyShowsTests.swift in Sources */,
 				2BC9B2962569A84000AD6084 /* FakeResponse.swift in Sources */,
+				2BED39432575977F004A6E35 /* MokeMovie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
