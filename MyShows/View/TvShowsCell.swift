@@ -9,10 +9,16 @@ import UIKit
 
 class TvShowsCell: UITableViewCell{
 
+    //MARK: - Outlets
+    
     @IBOutlet weak var tvCollectionViewCell: UICollectionView!
+    
+    //MARK: - Variables
     
     var shows: [TV] = []
     var controller: TvViewController!
+    
+    //MARK: - Functions
     
     func setup(_ shows: [TV], _ controller: TvViewController) {
         self.controller = controller
@@ -30,9 +36,9 @@ class TvShowsCell: UITableViewCell{
         l.scrollDirection = .horizontal
         return l
     }
-    
 }
 
+//MARK: - CollectionView extension
 extension TvShowsCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

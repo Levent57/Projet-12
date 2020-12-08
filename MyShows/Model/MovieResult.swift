@@ -8,7 +8,6 @@
 import Foundation
 
 struct MovieResult: Codable {
-    
     let page: Int
     let results: [Movie]?
     let totalPages: Int
@@ -23,7 +22,6 @@ struct MovieResult: Codable {
 }
 
 struct Movie: Codable, Equatable {
-    
     let posterPath: String?
     let adult: Bool
     let overview: String

@@ -11,6 +11,8 @@ import SafariServices
 
 class TvDetailController: UIViewController {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var backGroundImageView: UIImageView!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -20,13 +22,15 @@ class TvDetailController: UIViewController {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var trailerCollection: UICollectionView!
     
+    // MARK: - Properties
     
     var tv: TV!
     var tvShow: [TV]?
-    
     var service = MovieService()
     var tvID: Int?
     var videoList:[Videos]?
+    
+    //MARK: - View life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +51,8 @@ class TvDetailController: UIViewController {
         }
     }
     
+    //MARK: - Functions
+    
     func setupLabel() {
         guard let t = tv else { return }
         navigationItem.title = t.name
@@ -58,7 +64,7 @@ class TvDetailController: UIViewController {
         backGroundImageView.load(1280, t.backdrop_path ?? "")
     }
     
-    
+    // Animation for average score
     @objc func animateProgress() {
         let cP = self.view.viewWithTag(101) as! CircularRateView
         cP.setProgressWithAnimation(duration: 0.7, value: 0.2)
@@ -129,6 +135,8 @@ class TvDetailController: UIViewController {
     }
 }
 
+//MARK: - CollectionView extension
+
 extension TvDetailController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -144,15 +152,12 @@ extension TvDetailController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let trailerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tvTrailerCell", for: indexPath) as! TrailerCell
         if collectionView == self.trailerCollection {
             let video_one = self.videoList![indexPath.row]
             if let video_key = video_one.key {
                 let videoThumbURL = service.youtubeThumb(path: video_key)
-                
                 let url = videoThumbURL
-                
                 if let data = try? Data(contentsOf: url!)  {
                     trailerCell.backgroundImageView.image = UIImage(data: data)
                 }  else {
@@ -163,7 +168,6 @@ extension TvDetailController: UICollectionViewDataSource, UICollectionViewDelega
             }
             trailerCell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapVideo(_:))))
         }
-        
         return trailerCell
     }
 }

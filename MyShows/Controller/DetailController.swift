@@ -10,6 +10,8 @@ import SafariServices
 
 class DetailController: UIViewController {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var originalTitleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
@@ -19,13 +21,16 @@ class DetailController: UIViewController {
     @IBOutlet weak var trailersCollection: UICollectionView!
     @IBOutlet weak var circularRateView: CircularRateView!
     
+    // MARK: - Properties
+    
     var movie: Movie!
     var movies: [Movie]?
-    
     var service = MovieService()
     var movieID: Int?
     var videoList:[Videos]?
 
+    //MARK: - View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.perform(#selector(animateProgress), with: nil, afterDelay: 0.5)
@@ -44,6 +49,8 @@ class DetailController: UIViewController {
         }
     }
     
+    //MARK: - Functions
+    
     func setupLabel() {
         guard let m = movie else { return }
         originalTitleLabel.text = m.originalTitle
@@ -54,6 +61,7 @@ class DetailController: UIViewController {
         backgroundImageView.load(1280, m.backdropPath ?? "")
     }
 
+    /// Animation for average score
     @objc func animateProgress() {
         let cP = self.view.viewWithTag(101) as! CircularRateView
         cP.setProgressWithAnimation(duration: 0.7, value: 0.2)
@@ -118,19 +126,17 @@ class DetailController: UIViewController {
                 let videoURL = service.youtubeURL(path: video_key)
                 if let videourl = videoURL{
                     print(videourl)
-                    
                     let safariVC = SFSafariViewController(url: videourl)
                     present(safariVC, animated: true, completion: nil)
                 }
             }
         }
     }
-
 }
 
+//MARK: - CollectionView extension
+
 extension DetailController: UICollectionViewDataSource {
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.trailersCollection{
@@ -160,11 +166,11 @@ extension DetailController: UICollectionViewDataSource {
             trailerCell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapVideo(_:))))
         }
         return trailerCell
-   }
+    }
     
     func collectionView(_ collectionView: UICollectionView,
-                                   layout collectionViewLayout: UICollectionViewLayout,
-                                   minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-            return 10
-        }
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
 }

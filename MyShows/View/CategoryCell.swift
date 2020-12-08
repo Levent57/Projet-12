@@ -8,13 +8,19 @@
 import UIKit
 
 class CategoryCell: UITableViewCell {
-
+    
+    //MARK: - Outlets
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var movies: [Movie] = []
-    var controller: ViewController!
+    //MARK: - Variables
     
-    func setup(_ movies: [Movie], _ controller: ViewController) {
+    var movies: [Movie] = []
+    var controller: MovieController!
+    
+    //MARK: - Functions
+    
+    func setup(_ movies: [Movie], _ controller: MovieController) {
         self.controller = controller
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
@@ -33,6 +39,8 @@ class CategoryCell: UITableViewCell {
     
 }
 
+//MARK: - CollectionView extension
+
 extension CategoryCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -46,10 +54,7 @@ extension CategoryCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let movie = movies[indexPath.item]
-//        controller.performSegue(withIdentifier: "Detail", sender: movie)
-        if let mainViewController = parentViewController as? ViewController {
-//            guard movies.count > indexPath.row else { return }
+        if let mainViewController = parentViewController as? MovieController {
             let movie = movies[indexPath.row]
             guard let detailVC = mainViewController.storyboard?.instantiateViewController(withIdentifier: "movieDetail") as? DetailController else { return }
             detailVC.movie = movie
@@ -58,6 +63,5 @@ extension CategoryCell: UICollectionViewDelegate, UICollectionViewDataSource {
         }
     }
 }
-//}
 
 

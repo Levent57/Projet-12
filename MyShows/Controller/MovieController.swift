@@ -7,27 +7,30 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MovieController: UIViewController {
+    
+
+    //MARK: - Outlets
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Properties
     
     var moviesByCategory: [MoviesByCategory] = []
     var alertController: UIAlertController?
-    
-    @IBOutlet weak var tableView: UITableView!
 
+    //MARK: - View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if NetworkCheck.isConnectedToNetwork() {
-//            print("Connecté à internet")
-//            downoladMovies()
-//        } else {
-//            print("Pas de connexion")
-//            showErrorPopup(title: "Errur", message: "Erreur")
-//        }
         tableView.delegate = self
         tableView.dataSource = self
         downoladMovies()
     }
 
+    //MARK: - Functions
+    
+    //Segue to DetailController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Detail", let detail = segue.destination as? DetailController {
             detail.movie = sender as? Movie
@@ -46,15 +49,16 @@ class ViewController: UIViewController {
                 print(mbc.movies.count)
                 self.tableView.reloadData()
                 } else {
-                    self.showErrorPopup(title: "Erreur", message: "Erreur")
+                    self.showErrorPopup(title: "Pas de connexion", message: "Veuillez vous reconnecter à internet")
                 }
             }
         }
     }
 }
 
+//MARK: - TableView extension
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension MovieController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return moviesByCategory.count
@@ -85,14 +89,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.font = UIFont(name: "Futura", size: 20)!
         header.textLabel?.textColor = UIColor.black
-    }
-}
-
-extension UIViewController {
-    func showAlert(with message: String) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        present(alertController, animated: true)
     }
 }
 

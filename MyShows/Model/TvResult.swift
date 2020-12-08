@@ -7,9 +7,7 @@
 
 import Foundation
 
-
 struct TvResult: Codable {
-    
     let page: Int
     let results: [TV]?
     let totalPages: Int
@@ -24,7 +22,6 @@ struct TvResult: Codable {
 }
 
 struct TV: Codable {
-    
     let original_name: String?
     let genre_ids: [Int]?
     let name: String?

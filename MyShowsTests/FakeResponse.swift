@@ -15,7 +15,7 @@ class FakeResponseData {
     static let responseKO = HTTPURLResponse(
         url: URL(string: "https://openclassrooms.com")!, statusCode: 500, httpVersion: nil, headerFields: [:])!
     
-    static var currencyCorrectData: Data {
+    static var correctData: Data {
         let bundle = Bundle(for: FakeResponseData.self)
         let url = bundle.url(forResource: "Movie", withExtension: "json")!
         let data = try! Data(contentsOf: url)

@@ -9,16 +9,21 @@ import UIKit
 
 class TvViewController: UIViewController {
     
-    var tvByCategory: [TvShowsByCategory] = []
+
+    //MARK: - Outlets
     
     @IBOutlet weak var tvShowsTableView: UITableView!
     
+    // MARK: - Properties
+    
+    var tvByCategory: [TvShowsByCategory] = []
+    
+    //MARK: - View life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tvShowsTableView.delegate = self
         tvShowsTableView.dataSource = self
-//        self.tvShowsTableView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         TvShowCategory.allCases.forEach { (tscat) in
             let new = TvShowsByCategory(tvCat: tscat)
             self.tvByCategory.append(new)
@@ -30,18 +35,23 @@ class TvViewController: UIViewController {
                     print(tsbc.tvShows.count)
                     self.tvShowsTableView.reloadData()
                 } else {
-                    self.showErrorPopup(title: "Erreur", message: "Erreur")
+                    self.showErrorPopup(title: "Pas de connexion", message: "Veuillez vous reconecter à internet")
                 }
             }
         }
     }
     
+    //MARK: - Functions
+    
+    //Segue to DetailController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "TvDetail", let detail = segue.destination as? TvDetailController {
             detail.tv = sender as? TV
         }
     }
 }
+
+//MARK: - TableView extension
 
 extension TvViewController: UITableViewDelegate, UITableViewDataSource {
     

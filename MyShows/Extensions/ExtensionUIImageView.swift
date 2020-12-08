@@ -10,6 +10,7 @@ import UIKit
 
 extension UIImageView {
 
+    //Load image
     func load(_ size: Int, _ path: String) {
         let urlString = "http://image.tmdb.org/t/p/" + "w\(size)//" + path
         guard let url = URL(string: urlString) else { return }
@@ -23,7 +24,10 @@ extension UIImageView {
     }
 }
 
+
 extension UIView {
+    
+    // Assists with pushing data to detail view controller
     var parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self
         while parentResponder != nil {

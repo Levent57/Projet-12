@@ -9,13 +9,18 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var searchTableView: UITableView! { didSet{searchTableView.tableFooterView = UIView() } }
     @IBOutlet weak var searchBar: UISearchBar!
     
+    // MARK: - Properties
     var service = MovieService()
     private var movieTitle = [String]()
     var movies = [Movie]()
 
+    //MARK: - View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTableView.delegate = self
@@ -23,10 +28,14 @@ class SearchViewController: UIViewController {
         searchBar.delegate = self
     }
 
+    //MARK: - Functions
+    
+    //Hidden Keyborard
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
 
+    //Segue to DetailController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetail" {
             guard let resultVC = segue.destination as? DetailController else { return }
@@ -34,6 +43,8 @@ class SearchViewController: UIViewController {
         }
     }
 }
+
+//MARK: - SearchBar extension
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -53,6 +64,8 @@ extension SearchViewController: UISearchBarDelegate {
         }
     }
 }
+
+//MARK: - TableView extension
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
@@ -81,6 +94,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return 125
     }
     
+    //Show message when tableView is empty
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = "Recherchez vos films ici"

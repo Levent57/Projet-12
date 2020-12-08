@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B20CC212550665E0046B24B /* HTTPEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B20CC202550665E0046B24B /* HTTPEngine.swift */; };
-		2B20CC2525506D990046B24B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B20CC2425506D990046B24B /* Logger.swift */; };
-		2B20CC2825506EAC0046B24B /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B20CC2725506EAC0046B24B /* HTTPClient.swift */; };
-		2B20CC2B25506F630046B24B /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B20CC2A25506F620046B24B /* NetworkError.swift */; };
-		2B20CC2E25506FF70046B24B /* TMDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B20CC2D25506FF70046B24B /* TMDBService.swift */; };
 		2B55CFAA255AE600006C64DE /* TvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CFA9255AE600006C64DE /* TvViewController.swift */; };
 		2B55CFAD255AF411006C64DE /* TvShowsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CFAC255AF411006C64DE /* TvShowsCell.swift */; };
 		2B55CFB0255AFF14006C64DE /* Videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CFAF255AFF14006C64DE /* Videos.swift */; };
@@ -23,7 +18,7 @@
 		2B99C17B256348BF00C62022 /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C17A256348BF00C62022 /* TrailerCell.swift */; };
 		2BA73183253F532E00E58619 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA73182253F532E00E58619 /* AppDelegate.swift */; };
 		2BA73185253F532E00E58619 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA73184253F532E00E58619 /* SceneDelegate.swift */; };
-		2BA73187253F532E00E58619 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA73186253F532E00E58619 /* ViewController.swift */; };
+		2BA73187253F532E00E58619 /* MovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA73186253F532E00E58619 /* MovieController.swift */; };
 		2BA7318A253F532E00E58619 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BA73188253F532E00E58619 /* Main.storyboard */; };
 		2BA7318C253F533200E58619 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BA7318B253F533200E58619 /* Assets.xcassets */; };
 		2BA7318F253F533200E58619 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BA7318D253F533200E58619 /* LaunchScreen.storyboard */; };
@@ -41,7 +36,6 @@
 		2BE0FD7F255B474B0078DBA2 /* CircularRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE0FD7E255B474B0078DBA2 /* CircularRateView.swift */; };
 		2BED393F2575965A004A6E35 /* Movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BED393E2575965A004A6E35 /* Movie.json */; };
 		2BED39432575977F004A6E35 /* MokeMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BED39422575977F004A6E35 /* MokeMovie.swift */; };
-		2BED39782578F2D9004A6E35 /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BED39772578F2D9004A6E35 /* NetworkCheck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,11 +49,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2B20CC202550665E0046B24B /* HTTPEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPEngine.swift; sourceTree = "<group>"; };
-		2B20CC2425506D990046B24B /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		2B20CC2725506EAC0046B24B /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
-		2B20CC2A25506F620046B24B /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		2B20CC2D25506FF70046B24B /* TMDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBService.swift; sourceTree = "<group>"; };
 		2B55CFA9255AE600006C64DE /* TvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvViewController.swift; sourceTree = "<group>"; };
 		2B55CFAC255AF411006C64DE /* TvShowsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShowsCell.swift; sourceTree = "<group>"; };
 		2B55CFAF255AFF14006C64DE /* Videos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
@@ -72,7 +61,7 @@
 		2BA7317F253F532E00E58619 /* MyShows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyShows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BA73182253F532E00E58619 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BA73184253F532E00E58619 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2BA73186253F532E00E58619 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2BA73186253F532E00E58619 /* MovieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieController.swift; sourceTree = "<group>"; };
 		2BA73189253F532E00E58619 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2BA7318B253F533200E58619 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BA7318E253F533200E58619 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -93,7 +82,6 @@
 		2BE0FD7E255B474B0078DBA2 /* CircularRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularRateView.swift; sourceTree = "<group>"; };
 		2BED393E2575965A004A6E35 /* Movie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Movie.json; sourceTree = "<group>"; };
 		2BED39422575977F004A6E35 /* MokeMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokeMovie.swift; sourceTree = "<group>"; };
-		2BED39772578F2D9004A6E35 /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,11 +141,6 @@
 				2B99C1742562EF5F00C62022 /* TvResult.swift */,
 				2B55CFAF255AFF14006C64DE /* Videos.swift */,
 				2B55CFB2255B01BE006C64DE /* Credit.swift */,
-				2B20CC202550665E0046B24B /* HTTPEngine.swift */,
-				2B20CC2725506EAC0046B24B /* HTTPClient.swift */,
-				2B20CC2D25506FF70046B24B /* TMDBService.swift */,
-				2B20CC2A25506F620046B24B /* NetworkError.swift */,
-				2B20CC2425506D990046B24B /* Logger.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,7 +164,7 @@
 		2BA7319A253F547900E58619 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2BA73186253F532E00E58619 /* ViewController.swift */,
+				2BA73186253F532E00E58619 /* MovieController.swift */,
 				2BB54BBE254B0DF200803BFD /* SearchViewController.swift */,
 				2B55CFA9255AE600006C64DE /* TvViewController.swift */,
 				2BB54BB9254AD7F200803BFD /* DetailController.swift */,
@@ -206,7 +189,6 @@
 			children = (
 				2BB54BA825473BB100803BFD /* ExtensionUIImageView.swift */,
 				2BC9B27B25699F0800AD6084 /* ErrorAlert.swift */,
-				2BED39772578F2D9004A6E35 /* NetworkCheck.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -324,15 +306,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BA73187253F532E00E58619 /* ViewController.swift in Sources */,
-				2BED39782578F2D9004A6E35 /* NetworkCheck.swift in Sources */,
+				2BA73187253F532E00E58619 /* MovieController.swift in Sources */,
 				2B55CFAD255AF411006C64DE /* TvShowsCell.swift in Sources */,
 				2B99C17825630DD000C62022 /* TvDetailController.swift in Sources */,
 				2BB54BBF254B0DF200803BFD /* SearchViewController.swift in Sources */,
 				2B55CFAA255AE600006C64DE /* TvViewController.swift in Sources */,
 				2BA731B1253FA48900E58619 /* MovieResult.swift in Sources */,
 				2BB54BBA254AD7F200803BFD /* DetailController.swift in Sources */,
-				2B20CC2E25506FF70046B24B /* TMDBService.swift in Sources */,
 				2BB54BA225447EC700803BFD /* MovieCell.swift in Sources */,
 				2B5A99D42558A4D60004EA56 /* SearchResultCell.swift in Sources */,
 				2BA73183253F532E00E58619 /* AppDelegate.swift in Sources */,
@@ -341,11 +321,7 @@
 				2BC9B27C25699F0800AD6084 /* ErrorAlert.swift in Sources */,
 				2BA731AB253FA16800E58619 /* MovieService.swift in Sources */,
 				2B55CFB0255AFF14006C64DE /* Videos.swift in Sources */,
-				2B20CC2B25506F630046B24B /* NetworkError.swift in Sources */,
-				2B20CC2525506D990046B24B /* Logger.swift in Sources */,
 				2B99C17B256348BF00C62022 /* TrailerCell.swift in Sources */,
-				2B20CC2825506EAC0046B24B /* HTTPClient.swift in Sources */,
-				2B20CC212550665E0046B24B /* HTTPEngine.swift in Sources */,
 				2B99C1752562EF5F00C62022 /* TvResult.swift in Sources */,
 				2B55CFB3255B01BE006C64DE /* Credit.swift in Sources */,
 				2BE0FD7F255B474B0078DBA2 /* CircularRateView.swift in Sources */,

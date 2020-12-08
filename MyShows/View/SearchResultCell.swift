@@ -9,12 +9,15 @@ import UIKit
 
 class SearchResultCell: UITableViewCell {
 
+    //MARK: - Outlets
+    
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var MovieTitleLabel: UILabel!
     @IBOutlet weak var releaseDataLabel: UILabel!
     
-    let service = MovieService()
+    //MARK: - Variables
     
+    let service = MovieService()
     var movie: Movie? {
         didSet {
             updateViews()
@@ -25,6 +28,8 @@ class SearchResultCell: UITableViewCell {
         super.awakeFromNib()
         updateViews()
     }
+    
+    //MARK: - Functions
     
     func updateViews() {
         guard let movie = movie else { return }

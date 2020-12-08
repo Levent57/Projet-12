@@ -8,16 +8,16 @@
 import Foundation
 
 enum MovieCategory: String, CaseIterable {
-    case now_playing
+    case nowPlaying = "now_playing"
     case upcoming
-    case top_rated
+    case topRated = "top_rated"
     case popular
 }
 
 enum TvShowCategory: String, CaseIterable {
     case popular
-    case on_the_air
-    case top_rated
+    case onTheAir = "on_the_air"
+    case topRated = "top_rated"
 }
 
 enum SelectedCategory: String {
@@ -41,6 +41,7 @@ class MovieService {
 
     private var movieSession: URLSession
 
+    //call for movies
     func getMovie(category: MovieCategory,selection: SelectedCategory, callback: @escaping (Bool, [Movie]?) -> Void) {
         guard let url = URL(string: baseUrl + selection.rawValue + category.rawValue + lang + key) else { return }
         print(url)
@@ -67,6 +68,7 @@ class MovieService {
         task?.resume()
     }
     
+    //call for tv shows
     func getTvShows(category: TvShowCategory, selection: SelectedCategory, callback: @escaping (Bool, [TV]?) -> Void) {
         guard let url = URL(string: baseUrl + selection.rawValue + category.rawValue +  lang + key) else { return }
         print(url)
@@ -93,6 +95,7 @@ class MovieService {
         task?.resume()
     }
 
+    //call for searching movies
     func searchMovie(selection: SelectedCategory,query: [String], callback: @escaping (Bool, [Movie]?) -> Void) {
         guard let url = URL(string: baseUrl + selection.rawValue + lang + key + search + query.joined()) else { return }
         var task:URLSessionDataTask?
@@ -120,11 +123,11 @@ class MovieService {
         task?.resume()
     }
     
+    //call for download videos trailers
     func getDataRequest(url:String, onCompletion:@escaping (Any)->()){
         let path = "https://api.themoviedb.org/3\(url)"
         if let url = URL(string: path) {
             print(url)
-//            URLSession.shared.dataTask(with: url) {
                 movieSession.dataTask(with: url) {
                 (data, response,error) in
                 
@@ -140,6 +143,7 @@ class MovieService {
         }
     }
     
+    //movies trailers
     func movieVideos(movieID:Int, completion: @escaping (VideoInfo)->()) {
         let getURL = "/movie/\(movieID)/videos?api_key=e6cb2189d29775d655516bccea379b4b&language=en-US"
         getDataRequest(url: getURL) { jsonData in
@@ -155,8 +159,8 @@ class MovieService {
         }
     }
     
+    //tv shows trailers
     func tvVideos(tvID:Int, completion: @escaping (VideoInfo)->()) {
-        
         let getURL = "/tv/\(tvID)/videos?api_key=e6cb2189d29775d655516bccea379b4b&language=en-US"
         getDataRequest(url: getURL) { jsonData in
             do
@@ -171,6 +175,7 @@ class MovieService {
         }
     }
     
+    //youtube image url
     func youtubeThumb(path:String)->URL?{
        if let url = URL(string: "https://img.youtube.com/vi/" + path + "/0.jpg"){
            return url
@@ -178,8 +183,10 @@ class MovieService {
        return nil
    }
    
+    //youtube video url
     func youtubeURL(path:String)->URL?{
        if let url = URL(string: "https://www.youtube.com/watch?v=" + path){
+        print(url)
            return url
        }
        return nil
