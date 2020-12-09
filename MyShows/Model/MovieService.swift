@@ -124,7 +124,7 @@ class MovieService {
     }
     
     //call for download videos trailers
-    func getDataRequest(url:String, onCompletion:@escaping (Any)->()){
+    func getDataRequest(url:String, onCompletion:@escaping (Data)->()){
         let path = "https://api.themoviedb.org/3\(url)"
         if let url = URL(string: path) {
             print(url)
@@ -149,7 +149,7 @@ class MovieService {
         getDataRequest(url: getURL) { jsonData in
             do
             {
-                let results = try JSONDecoder().decode(VideoInfo.self, from: jsonData as! Data)
+                let results = try JSONDecoder().decode(VideoInfo.self, from: jsonData)
                 completion(results)
             }
             catch
@@ -165,7 +165,7 @@ class MovieService {
         getDataRequest(url: getURL) { jsonData in
             do
             {
-                let results = try JSONDecoder().decode(VideoInfo.self, from: jsonData as! Data)
+                let results = try JSONDecoder().decode(VideoInfo.self, from: jsonData)
                 completion(results)
             }
             catch

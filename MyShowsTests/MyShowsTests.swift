@@ -203,7 +203,7 @@ class MyShowsTests: XCTestCase {
     
     func testGetServiceTVShouldPostFailedCallbackIfCorrectDataAndNoError() {
 
-        let movieService = MovieService(movieSession: URLSessionFake(data: FakeResponseData.correctData, response: FakeResponseData.responseOK, error: nil))
+        let movieService = MovieService(movieSession: URLSessionFake(data: FakeResponseData.tvTrailercorrectData, response: FakeResponseData.responseOK, error: nil))
 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         movieService.tvVideos(tvID: 82856) { (results) in
@@ -216,11 +216,11 @@ class MyShowsTests: XCTestCase {
     
     func testGetServiceMovieShouldPostFailedCallbackIfCorrectDataAndNoError() {
 
-        let movieService = MovieService(movieSession: URLSessionFake(data: FakeResponseData.correctData, response: FakeResponseData.responseOK, error: nil))
+        let movieService = MovieService(movieSession: URLSessionFake(data: FakeResponseData.movieTrailercorrectData, response: FakeResponseData.responseOK, error: nil))
 
         let expectation = XCTestExpectation(description: "Unable to create URL")
         movieService.movieVideos(movieID: 577922) { (results) in
-            XCTAssertNil(results)
+            XCTAssertNotNil(results)
             expectation.fulfill()
             }
 

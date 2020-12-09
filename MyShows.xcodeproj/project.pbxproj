@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B31F6B42580D88900EDAD92 /* MovieTrailer.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B31F6B32580D88900EDAD92 /* MovieTrailer.json */; };
+		2B31F6B82580D94800EDAD92 /* TvTrailer.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B31F6B72580D94800EDAD92 /* TvTrailer.json */; };
 		2B55CFAA255AE600006C64DE /* TvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CFA9255AE600006C64DE /* TvViewController.swift */; };
 		2B55CFAD255AF411006C64DE /* TvShowsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CFAC255AF411006C64DE /* TvShowsCell.swift */; };
 		2B55CFB0255AFF14006C64DE /* Videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CFAF255AFF14006C64DE /* Videos.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B31F6B32580D88900EDAD92 /* MovieTrailer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MovieTrailer.json; sourceTree = "<group>"; };
+		2B31F6B72580D94800EDAD92 /* TvTrailer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TvTrailer.json; sourceTree = "<group>"; };
 		2B55CFA9255AE600006C64DE /* TvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvViewController.swift; sourceTree = "<group>"; };
 		2B55CFAC255AF411006C64DE /* TvShowsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShowsCell.swift; sourceTree = "<group>"; };
 		2B55CFAF255AFF14006C64DE /* Videos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 				2BED39422575977F004A6E35 /* MokeMovie.swift */,
 				2BC9B2852569A7BE00AD6084 /* MyShowsTests.swift */,
 				2BED393E2575965A004A6E35 /* Movie.json */,
+				2B31F6B32580D88900EDAD92 /* MovieTrailer.json */,
+				2B31F6B72580D94800EDAD92 /* TvTrailer.json */,
 				2BC9B2872569A7BE00AD6084 /* Info.plist */,
 			);
 			path = MyShowsTests;
@@ -295,6 +301,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B31F6B82580D94800EDAD92 /* TvTrailer.json in Resources */,
+				2B31F6B42580D88900EDAD92 /* MovieTrailer.json in Resources */,
 				2BED393F2575965A004A6E35 /* Movie.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,5 +22,19 @@ class FakeResponseData {
         return data
     }
     
+    static var movieTrailercorrectData: Data {
+        let bundle = Bundle(for: FakeResponseData.self)
+        let url = bundle.url(forResource: "MovieTrailer", withExtension: "json")!
+        let data = try! Data(contentsOf: url)
+        return data
+    }
+    
+    static var tvTrailercorrectData: Data {
+        let bundle = Bundle(for: FakeResponseData.self)
+        let url = bundle.url(forResource: "TvTrailer", withExtension: "json")!
+        let data = try! Data(contentsOf: url)
+        return data
+    }
+    
     static let incorrectData = "error".data(using: .utf8)
 }

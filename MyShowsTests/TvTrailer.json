@@ -1,0 +1,45 @@
+{
+  "id": 82856,
+  "results": [
+    {
+      "id": "5d609d5aeec4f30015add686",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "aOC8E8z_ifw",
+      "name": "The Mandalorian | Official Trailer | Disney+ | Streaming Nov. 12",
+      "site": "YouTube",
+      "size": 360,
+      "type": "Trailer"
+    },
+    {
+      "id": "5db79fff2d37210015e82187",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "XmI7WKrAtqs",
+      "name": "The Mandalorian – Official Trailer 2 | Disney+ | Streaming Nov. 12",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Trailer"
+    },
+    {
+      "id": "5dd8f0dc28723c18ad556b3e",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "o3CUM-iFEFk",
+      "name": "The Mandalorian | Exclusive Clip | Disney+",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Clip"
+    },
+    {
+      "id": "5dd8f09f12aabc0011906541",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "2RVnrBLOBcI",
+      "name": "The  | Special Look | Disney+",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Featurette"
+    }
+  ]
+}

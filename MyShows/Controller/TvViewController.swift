@@ -24,6 +24,19 @@ class TvViewController: UIViewController {
         super.viewDidLoad()
         tvShowsTableView.delegate = self
         tvShowsTableView.dataSource = self
+        downloadTvShows()
+    }
+    
+    //MARK: - Functions
+    
+    //Segue to DetailController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TvDetail", let detail = segue.destination as? TvDetailController {
+            detail.tv = sender as? TV
+        }
+    }
+    
+    func downloadTvShows() {
         TvShowCategory.allCases.forEach { (tscat) in
             let new = TvShowsByCategory(tvCat: tscat)
             self.tvByCategory.append(new)
@@ -38,15 +51,6 @@ class TvViewController: UIViewController {
                     self.showErrorPopup(title: "Pas de connexion", message: "Veuillez vous reconecter à internet")
                 }
             }
-        }
-    }
-    
-    //MARK: - Functions
-    
-    //Segue to DetailController
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TvDetail", let detail = segue.destination as? TvDetailController {
-            detail.tv = sender as? TV
         }
     }
 }
