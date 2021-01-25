@@ -54,12 +54,17 @@ extension SearchViewController: UISearchBarDelegate {
             showErrorPopup(title: "Aucun text", message: "Veuillez taper le nom d'un film à rechercher")
         }
         service.searchMovie(selection: .search, query: [encodeSearch]) { (success, movie) in
-            guard let fetchedMovies = movie else { return }
-            self.movies = fetchedMovies
-            DispatchQueue.main.async {
-                self.searchTableView.reloadData()
-                self.searchBar.endEditing(true)
-                searchBar.text = nil
+            if success {
+                guard let fetchedMovies = movie else { return }
+                self.movies = fetchedMovies
+                DispatchQueue.main.async {
+                    self.searchTableView.reloadData()
+                    self.searchBar.endEditing(true)
+                    searchBar.text = nil
+                }
+            } else {
+                self.showErrorPopup(title: "Aucune correspondance", message: "Impossible de trouver votre recherche")
+                searchBar.text = ""
             }
         }
     }

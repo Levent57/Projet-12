@@ -177,19 +177,14 @@ class MovieService {
     
     //youtube image url
     func youtubeThumb(path:String)->URL?{
-       if let url = URL(string: "https://img.youtube.com/vi/" + path + "/0.jpg"){
-           return url
-       }
-       return nil
+        guard let url = URL(string: "https://img.youtube.com/vi/" + path + "/0.jpg") else { return nil }
+       return url
    }
    
     //youtube video url
     func youtubeURL(path:String)->URL?{
-       if let url = URL(string: "https://www.youtube.com/watch?v=" + path){
-        print(url)
-           return url
-       }
-       return nil
+        guard let url = URL(string: "https://www.youtube.com/watch?v=" + path) else { return nil }
+       return url
    }
     
 }
